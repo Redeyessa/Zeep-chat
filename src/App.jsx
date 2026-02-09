@@ -1,12 +1,21 @@
 import React from "react";
-import PhoneAuth from "./otp"; // import your otp.jsx component
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import GoogleAuth from "./otp";
+import ChatMain from "./ChatMain";
 
 function App() {
   return (
-    <div>
-      <h2>Firebase Phone Auth Demo</h2>
-      <PhoneAuth />
-    </div>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/login" element={<GoogleAuth />} />
+          <Route path="/" element={<ChatMain />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+          <Route path="Zeep-chat/" element={<GoogleAuth />} />
+          <Route path="Zeep-chat/chat" element={<ChatMain />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
